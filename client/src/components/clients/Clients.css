@@ -1,0 +1,55 @@
+.client {
+  width: 90%;
+  margin: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 1px;
+  height: fit-content;
+  max-height: 400px;
+  margin-top: 20px;
+  overflow: scroll;
+  overflow-x: hidden;
+}
+
+.client h1 {
+  margin-bottom: 5px;
+}
+
+.client hr {
+  margin-bottom: 30px;
+}
+
+.client__grid {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  cursor: pointer;
+  padding-left: 14px;
+  border-radius: 5px;
+}
+
+.client__grid span {
+  width: 5%;
+}
+
+.client__grid p:nth-child(2) {
+  font-weight: 700;
+  width: 20%;
+}
+
+.client__grid p:nth-child(3) {
+  font-weight: 700;
+  width: 70%;
+}
+
+.client__grid:nth-child(odd) {
+  width: 100%;
+  padding: 8px;
+  background-color: rgb(231, 227, 227);
+}
+
+.client__grid:nth-child(even) {
+  width: 100%;
+  padding: 8px;
+  background-color: white;
+}

@@ -1,0 +1,48 @@
+.modal {
+  height: 100vh;
+  width: 100vw;
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: white;
+}
+
+.modal__heading {
+  padding: 20px;
+  display: flex;
+  justify-content: space-between;
+}
+
+.modal__heading div {
+  width: 5%;
+  display: flex;
+  justify-content: space-between;
+}
+
+.cancel,
+.download {
+  cursor: pointer;
+}
+
+.modal__image {
+  height: 450px;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 30px;
+}
+
+.modal__image img {
+  height: 100%;
+  width: 50%;
+  object-fit: cover;
+}
+
+.modal__image embed {
+  height: 100%;
+  width: 60%;
+  object-fit: cover;
+}
