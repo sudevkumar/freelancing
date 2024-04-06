@@ -4,9 +4,10 @@ import cloudinary from "cloudinary";
 import { Message } from "../modals/messages.js";
 
 export const createNewMessage = catchAsyncErrors(async (req, res, next) => {
-  const { name, address, message, pan, adhar, form_type } = req.body;
+  const { name, address, message, pan, frontAdhar, backAdhar, form_type } =
+    req.body;
 
-  if (!name || !address || !message || !pan || !adhar) {
+  if (!name || !address || !message) {
     return next(new ErrorHandler("Please fill the full form!", 400));
   }
 
@@ -15,7 +16,8 @@ export const createNewMessage = catchAsyncErrors(async (req, res, next) => {
     address,
     message,
     pan,
-    adhar,
+    frontAdhar,
+    backAdhar,
     form_type,
   });
   res.status(200).json({
