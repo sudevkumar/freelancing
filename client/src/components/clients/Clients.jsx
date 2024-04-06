@@ -16,6 +16,7 @@ const Clients = () => {
     try {
       const res = await axios.get("http://localhost:8080/api/v1/message/get");
       setMsg(res?.data?.messages);
+      console.log(res?.data?.messages);
     } catch (error) {
       console.log(error);
     }
@@ -41,24 +42,24 @@ const Clients = () => {
         <>
           <h1>Your Recent Clients</h1>
           <hr />
-          {msg.map((ele, ind) => (
+          {msg?.map((ele, ind) => (
             <div className="client__grid">
               <span>
                 <FaRegHeart />
               </span>
-              <p onClick={() => navigate(`/usermessage/${ele._id}`)}>
-                {ele.name}
+              <p onClick={() => navigate(`/usermessage/${ele?._id}`)}>
+                {ele?.name}
               </p>
-              {ele.message.length > 100 ? (
-                <p onClick={() => navigate(`/usermessage/${ele._id}`)}>
-                  {ele.message.substring(0, 100)}...
+              {ele?.message.length > 100 ? (
+                <p onClick={() => navigate(`/usermessage/${ele?._id}`)}>
+                  {ele?.message?.substring(0, 100)}...
                 </p>
               ) : (
-                <p onClick={() => navigate(`/usermessage/${ele._id}`)}>
-                  {ele.message}
+                <p onClick={() => navigate(`/usermessage/${ele?._id}`)}>
+                  {ele?.message}
                 </p>
               )}
-              <span onClick={() => deleteAMessage(ele._id)}>
+              <span onClick={() => deleteAMessage(ele?._id)}>
                 <MdDelete />
               </span>
             </div>

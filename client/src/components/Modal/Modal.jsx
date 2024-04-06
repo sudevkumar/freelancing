@@ -4,6 +4,7 @@ import { GiCancel } from "react-icons/gi";
 import { IoMdDownload } from "react-icons/io";
 
 const Modal = ({ name, card, setModal, modal, urls }) => {
+  console.log(urls, "urls");
   const downLoadImage = async () => {
     const imageBlob = await fetch(urls)
       .then((res) => res.arrayBuffer())

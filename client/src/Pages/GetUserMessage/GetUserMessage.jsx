@@ -48,25 +48,35 @@ const GetUserMessage = () => {
             ) : (
               <embed src={msg.pan} type="" />
             )}
-            <p>{msg.name}'s Pan</p>
+            <p>{msg?.name}'s Pan</p>
           </div>
 
-          <div onClick={() => openModal(msg.adhar)}>
-            {!msg?.adhar?.includes(".pdf") ? (
-              <img src={msg.adhar} alt="" />
+          <div onClick={() => openModal(msg.frontAdhar)}>
+            {!msg?.frontAdhar?.includes(".pdf") ? (
+              <img src={msg.frontAdhar} alt="" />
             ) : (
-              <embed src={msg.adhar} type="" />
+              <embed src={msg.frontAdhar} type="" />
             )}
 
             <p>{msg.name}'s Adhar</p>
+          </div>
+
+          <div onClick={() => openModal(msg.backAdhar)}>
+            {!msg?.backAdhar?.includes(".pdf") ? (
+              <img src={msg?.backAdhar} alt="" />
+            ) : (
+              <embed src={msg?.backAdhar} type="" />
+            )}
+
+            <p>{msg?.name}'s Adhar</p>
           </div>
         </div>
       </div>
 
       {modal && (
         <Modal
-          name={msg.name}
-          card={msg.pan ? "Pan Card" : "Adhar Card"}
+          name={msg?.name}
+          card={msg?.pan ? "Pan Card" : "Adhar Card"}
           setModal={setModal}
           modal={modal}
           urls={urls}
