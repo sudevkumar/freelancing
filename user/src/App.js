@@ -8,7 +8,8 @@ function App() {
   const [address, setAddress] = useState("");
   const [message, setMessage] = useState("");
   const [pan, setPan] = useState([]);
-  const [adhar, setAdhar] = useState([]);
+  const [frontAdhar, setFrontAdhar] = useState([]);
+  const [backAdhar, setBackAdhar] = useState([]);
 
   function toggleMenu() {
     var navLinks = document.querySelector(".nav-links");
@@ -22,18 +23,36 @@ function App() {
 
     axios
       .post("https://api.cloudinary.com/v1_1/sudevkumar/image/upload", formData)
-      .then((res) => console.log(res));
-    // .then((res) => setPan(res?.data?.url));
+      .then((res) => {
+        setPan(res?.data?.url);
+        toast.success("Pancard upload successfully!");
+      });
   };
 
-  const uploadAdherCard = (e) => {
+  const uploadFrontAdherCard = (e) => {
     const formData = new FormData();
     formData.append("file", e[0]);
     formData.append("upload_preset", "free_lancing");
 
     axios
       .post("https://api.cloudinary.com/v1_1/sudevkumar/image/upload", formData)
-      .then((res) => setAdhar(res?.data?.url));
+      .then((res) => {
+        setFrontAdhar(res?.data?.url);
+        toast.success("Adharcard upload successfully!");
+      });
+  };
+
+  const uploadBackAdherCard = (e) => {
+    const formData = new FormData();
+    formData.append("file", e[0]);
+    formData.append("upload_preset", "free_lancing");
+
+    axios
+      .post("https://api.cloudinary.com/v1_1/sudevkumar/image/upload", formData)
+      .then((res) => {
+        setBackAdhar(res?.data?.url);
+        toast.success("Adharcard upload successfully!");
+      });
   };
 
   const handleFormSubmit = async (e) => {
@@ -44,7 +63,8 @@ function App() {
       address,
       message,
       pan,
-      adhar,
+      frontAdhar,
+      backAdhar,
     };
 
     try {
@@ -53,9 +73,10 @@ function App() {
         payload
       );
 
-      console.log(res);
+      toast.success("Message send successfully!");
     } catch (error) {
       console.log(error);
+      toast.error("Something went wrong!");
     }
   };
 
@@ -131,13 +152,22 @@ function App() {
             onChange={(e) => uploadPanCard(e.target.files)}
             required
           />
-          <label for="aadhar">Aadhar Card:</label>
+          <label for="aadhar">Front Aadhar Card:</label>
           <input
             type="file"
             id="aadhar"
             name="aadhar"
             required
-            onChange={(e) => uploadAdherCard(e.target.files)}
+            onChange={(e) => uploadFrontAdherCard(e.target.files)}
+          />
+
+          <label for="aadhar">Back Aadhar Card:</label>
+          <input
+            type="file"
+            id="aadhar"
+            name="aadhar"
+            required
+            onChange={(e) => uploadBackAdherCard(e.target.files)}
           />
           <input type="submit" value="Submit" />
         </form>
