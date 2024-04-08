@@ -42,34 +42,40 @@ const GetUserMessage = () => {
         <p>{msg.name},</p>
         <p>{msg.message}</p>
         <div className="getUserDetails__photos">
-          <div onClick={() => openModal(msg.pan)}>
-            {!msg?.pan?.includes(".pdf") ? (
-              <img src={msg.pan} alt="" />
-            ) : (
-              <embed src={msg.pan} type="" />
-            )}
-            <p>{msg?.name}'s Pan</p>
-          </div>
+          {msg.pan && (
+            <div onClick={() => openModal(msg.pan)}>
+              {!msg?.pan?.includes(".pdf") ? (
+                <img src={msg.pan} alt="" />
+              ) : (
+                <embed src={msg.pan} type="" />
+              )}
+              <p>{msg?.name}'s Pan</p>
+            </div>
+          )}
 
-          <div onClick={() => openModal(msg.frontAdhar)}>
-            {!msg?.frontAdhar?.includes(".pdf") ? (
-              <img src={msg.frontAdhar} alt="" />
-            ) : (
-              <embed src={msg.frontAdhar} type="" />
-            )}
+          {msg.frontAdhar && (
+            <div onClick={() => openModal(msg.frontAdhar)}>
+              {!msg?.frontAdhar?.includes(".pdf") ? (
+                <img src={msg.frontAdhar} alt="" />
+              ) : (
+                <embed src={msg.frontAdhar} type="" />
+              )}
 
-            <p>{msg.name}'s Adhar</p>
-          </div>
+              <p>{msg.name}'s Adhar</p>
+            </div>
+          )}
 
-          <div onClick={() => openModal(msg.backAdhar)}>
-            {!msg?.backAdhar?.includes(".pdf") ? (
-              <img src={msg?.backAdhar} alt="" />
-            ) : (
-              <embed src={msg?.backAdhar} type="" />
-            )}
+          {msg.bachAdhar && (
+            <div onClick={() => openModal(msg.backAdhar)}>
+              {!msg?.backAdhar?.includes(".pdf") ? (
+                <img src={msg?.backAdhar} alt="" />
+              ) : (
+                <embed src={msg?.backAdhar} type="" />
+              )}
 
-            <p>{msg?.name}'s Adhar</p>
-          </div>
+              <p>{msg?.name}'s Adhar</p>
+            </div>
+          )}
         </div>
       </div>
 

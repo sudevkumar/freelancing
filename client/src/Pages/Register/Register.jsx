@@ -21,10 +21,10 @@ const Register = () => {
     };
     try {
       const res = await axios.post(
-        "http://localhost:4040/api/v1/user/register",
+        "http://localhost:8080/api/v1/user/register",
         payload
       );
-      console.log(res?.data?.message);
+      console.log(res?.data);
       localStorage.setItem("freeLanceToken", JSON.stringify(res?.data));
       toast.success(res?.data?.message);
       navigate("/");

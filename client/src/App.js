@@ -6,7 +6,6 @@ import Register from "./Pages/Register/Register";
 import { Toaster } from "react-hot-toast";
 import GetUserMessage from "./Pages/GetUserMessage/GetUserMessage";
 
-
 function App() {
   return (
     <>
@@ -17,7 +16,6 @@ function App() {
         <Route path="/register" element={<Register />} />
         <Route path="/usermessage/:id" element={<GetUserMessage />} />
       </Routes>
-      
     </>
   );
 }

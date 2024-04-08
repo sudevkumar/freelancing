@@ -9,7 +9,7 @@ import { clients } from "../../Utils/utils";
 import { Link, useNavigate } from "react-router-dom";
 import toast from "react-hot-toast";
 
-const Navbar = () => {
+const Navbar = ({ msg, getAllMessages }) => {
   const [search, setSearch] = useState("");
   const [searchResult, setSearchResult] = useState([]);
   const [open, setOpen] = useState(false);
@@ -23,7 +23,9 @@ const Navbar = () => {
 
   const searchResults = () => {
     setOpen(true);
-    const res = clients.filter((ele) => ele.name.includes(search));
+    const res = msg.filter((ele) =>
+      ele.name.toLowerCase().includes(search.toLowerCase())
+    );
     setSearchResult(res);
   };
 
@@ -40,6 +42,10 @@ const Navbar = () => {
       setSearchResult([]);
     }
   }, [search]);
+
+  const returnFalse = () => {
+    return toast.error("Lol");
+  };
 
   return (
     <>
@@ -100,17 +106,23 @@ const Navbar = () => {
 
       {open && (
         <div className="search__result">
-          {searchResult.map((ele, ind) => (
-            <div
-              className="search__result-show"
-              onClick={() => {
-                setOpen(false);
-                setSearch("");
-              }}
-            >
-              <p>{ele.name}</p>
-            </div>
-          ))}
+          {lsUser ? (
+            searchResult?.map((ele, ind) => (
+              <div
+                className="search__result-show"
+                onClick={() => {
+                  setOpen(false);
+                  setSearch("");
+                }}
+              >
+                <p>{ele.name}</p>
+              </div>
+            ))
+          ) : (
+            <p style={{ color: "red", fontSize: "20px", textAlign: "center" }}>
+              Login First!
+            </p>
+          )}
         </div>
       )}
     </>
